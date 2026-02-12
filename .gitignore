@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+Add-Content .gitignore "stripe.exe"
+stripe.exe
+stripe.exe
+
+API KEYS.txt
