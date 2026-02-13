@@ -23,7 +23,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-background py-20">
+    <section id="how-it-works" className="bg-background py-20">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-foreground md:text-4xl">

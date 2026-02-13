@@ -16,7 +16,8 @@ import {
   ChevronDown,
   ChevronUp,
   Loader2,
-  RefreshCw
+  RefreshCw,
+  Download
 } from "lucide-react";
 import Link from "next/link";
 import { PageTransition } from "@/components/ui/page-transition";
@@ -283,14 +284,25 @@ export default function AnalysisDetail() {
                   <p className="text-muted-foreground">{formatDate(analysis.created_at)}</p>
                 </div>
 
-                <Link href="/analyze">
+                <div className="flex gap-3">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button>
-                      <RefreshCw className="mr-2 h-4 w-4" />
-                      Nouvelle analyse
-                    </Button>
-                  </motion.div>
-                </Link>
+                    <Button
+                      variant="outline"
+                      onClick={() => window.open(`/api/export/${params.id}`, '_blank')}
+                    >
+                    <Download className="mr-2 h-4 w-4" />
+                    Export PDF
+                      </Button>
+            </motion.div>
+            <Link href="/analyze">
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <Button>
+        <RefreshCw className="mr-2 h-4 w-4" />
+        Nouvelle analyse
+      </Button>
+    </motion.div>
+  </Link>
+</div>
               </div>
             </motion.div>
 

@@ -24,7 +24,7 @@ interface Quota {
 }
 
 export default function Analyze() {
-  const { analyzeFile, reset, isUploading, isAnalyzing, result, error, filename } = useAnalysis();
+  const { analyzeFile, reset, isUploading, isAnalyzing, result, error, filename, analysisId } = useAnalysis();
   const [quota, setQuota] = useState<Quota | null>(null);
   const [quotaLoading, setQuotaLoading] = useState(true);
   const isLoading = isUploading || isAnalyzing;
@@ -127,7 +127,7 @@ export default function Analyze() {
 
             {result && (
               <SlideUp>
-                <AnalysisResultView result={result} filename={filename} onReset={reset} />
+                <AnalysisResultView result={result} filename={filename} onReset={reset} analysisId={analysisId} />
               </SlideUp>
             )}
           </div>

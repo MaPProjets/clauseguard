@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import Link from "next/link";
 
 const plans = [
   {
@@ -82,20 +83,22 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <Button
-                className="mt-8 w-full"
-                variant={plan.popular ? "default" : "outline"}
-                size="lg"
-              >
-                Commencer
-              </Button>
+              <Link href="/subscription">
+  <Button
+    className="mt-8 w-full"
+    variant={plan.popular ? "default" : "outline"}
+    size="lg"
+  >
+    Commencer
+  </Button>
+</Link>
             </div>
           ))}
         </div>
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
-          Essai gratuit 7 jours, sans carte bancaire
-        </p>
+  Paiement sécurisé par Stripe. Sans engagement, annulez à tout moment.
+</p>
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ export function useAnalysis() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filename, setFilename] = useState<string>("");
+  const [analysisId, setAnalysisId] = useState<string | null>(null);
 
   const analyzeFile = useCallback(async (file: File) => {
     setError(null);
@@ -91,6 +92,7 @@ export function useAnalysis() {
       };
 
       setResult(transformedResult);
+      setAnalysisId(analyzeData.analysisId || null);
 
     } catch (err) {
       setIsUploading(false);
@@ -105,6 +107,7 @@ export function useAnalysis() {
     setFilename("");
     setIsUploading(false);
     setIsAnalyzing(false);
+    setAnalysisId(null);
   }, []);
 
   return {
@@ -115,5 +118,6 @@ export function useAnalysis() {
     result,
     error,
     filename,
+    analysisId,
   };
 }

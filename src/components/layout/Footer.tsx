@@ -12,11 +12,8 @@ const Footer = () => {
           </Link>
 
           <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Mentions légales</a>
-            <a href="#" className="hover:text-foreground">CGV</a>
-            <a href="#" className="hover:text-foreground">Contact</a>
-            <a href="#" className="hover:text-foreground">Blog</a>
-          </nav>
+  <a href="mailto:contact@clauseguard.fr" className="hover:text-foreground">Contact</a>
+</nav>
 
           <p className="text-sm text-muted-foreground">
             Fait avec ❤️ pour les freelances français

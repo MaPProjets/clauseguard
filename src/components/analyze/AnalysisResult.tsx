@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, CheckCircle, FileText, RotateCcw } from "lucide-react";
+import { AlertTriangle, CheckCircle, FileText, RotateCcw, Download } from "lucide-react";
 import ScoreCircle from "./ScoreCircle";
 import ClauseCard from "./ClauseCard";
 import type { AnalysisResult } from "@/types";
@@ -8,9 +8,10 @@ interface AnalysisResultProps {
   result: AnalysisResult;
   filename: string;
   onReset: () => void;
+  analysisId?: string | null;
 }
 
-const AnalysisResultView = ({ result, filename, onReset }: AnalysisResultProps) => {
+const AnalysisResultView = ({ result, filename, onReset, analysisId }: AnalysisResultProps) => {
   const date = new Date().toLocaleDateString("fr-FR", {
     day: "numeric",
     month: "long",
@@ -30,10 +31,16 @@ const AnalysisResultView = ({ result, filename, onReset }: AnalysisResultProps) 
               <RotateCcw className="mr-1.5 h-4 w-4" />
               Nouvelle analyse
             </Button>
-            <Button variant="outline" size="sm">
-              <FileText className="mr-1.5 h-4 w-4" />
-              Exporter PDF
-            </Button>
+            {analysisId && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => window.open(`/api/export/${analysisId}`, '_blank')}
+              >
+                <Download className="mr-1.5 h-4 w-4" />
+                Exporter PDF
+              </Button>
+            )}
           </div>
         </div>
       </div>

@@ -285,9 +285,13 @@ function SubscriptionContent() {
                     transition={{ delay: 0.5 }}
                     className="mt-8 flex flex-col gap-3"
                   >
-                    <Button variant="ghost" className="w-full text-destructive hover:text-destructive">
-                      Annuler l'abonnement
-                    </Button>
+                    <Button 
+  variant="ghost" 
+  className="w-full text-destructive hover:text-destructive"
+  onClick={() => window.location.href = 'mailto:maelann.penhard@gmail.com?subject=Annulation abonnement ClauseGuard'}
+>
+  Annuler l'abonnement
+</Button>
                   </motion.div>
                 </motion.div>
 

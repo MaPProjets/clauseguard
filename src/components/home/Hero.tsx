@@ -45,11 +45,16 @@ const Hero = () => {
               </motion.div>
             </Link>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                <Play className="mr-2 h-4 w-4" />
-                Voir une démo
-              </Button>
-            </motion.div>
+  <Button 
+    variant="outline" 
+    size="lg" 
+    className="w-full sm:w-auto"
+    onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+  >
+    <Play className="mr-2 h-4 w-4" />
+    Comment ça marche
+  </Button>
+</motion.div>
           </motion.div>
         </div>
       </div>
