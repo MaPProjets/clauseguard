@@ -27,9 +27,8 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // IMPORTANT : toujours appeler getUser() pour rafraîchir la session
+  const { data: { user } } = await supabase.auth.getUser()
 
   // Routes protégées
   const protectedRoutes = ['/dashboard', '/subscription', '/analyze']
@@ -37,12 +36,16 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith(route)
   )
 
-  // Rediriger vers login si non connecté
   if (isProtectedRoute && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     url.searchParams.set('redirect', request.nextUrl.pathname)
-    return NextResponse.redirect(url)
+    const redirectResponse = NextResponse.redirect(url)
+    // Préserver les cookies sur la redirection
+    supabaseResponse.cookies.getAll().forEach(cookie => {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return redirectResponse
   }
 
   // Rediriger vers dashboard si déjà connecté sur login/signup
@@ -52,7 +55,11 @@ export async function middleware(request: NextRequest) {
   if (isAuthRoute && user) {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
-    return NextResponse.redirect(url)
+    const redirectResponse = NextResponse.redirect(url)
+    supabaseResponse.cookies.getAll().forEach(cookie => {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    })
+    return redirectResponse
   }
 
   return supabaseResponse
